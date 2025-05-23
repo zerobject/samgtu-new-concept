@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Вход — СамГТУ</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <script type="importmap">
+    {
+        "imports": {
+            "@material/web/": "https://esm.run/@material/web/"
+        }
+    }
+    </script>
+    <script type="module">
+        import '@material/web/all.js';
+        import { styles as typescaleStyles } from '@material/web/typography/md-typescale-styles.js';
+
+        document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    </script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <md-filled-button id="login-button">Войти</md-filled-button>
+        <md-outlined-icon-button id="theme-toggle">
+            <md-icon id="theme-icon">dark_mode</md-icon>
+        </md-outlined-icon-button>
+    </header>
+
+    <md-dialog id="login-form">
+        <div slot="headline" style="justify-content: space-between;">
+            <label>Вход в систему</label>
+            <md-icon-button id="settings-button">
+                <md-icon>settings</md-icon>
+            </md-icon-button>
+        </div>
+        <form slot="content" onsubmit="return validateForm(event)">
+            <md-outlined-text-field label="Логин" id="login"></md-outlined-text-field>
+            <md-outlined-text-field label="Пароль" id="password" type="password"></md-outlined-text-field>
+
+            <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                <label style="display: flex; align-items: center; gap: 8px;">
+                    <md-switch></md-switch>
+                    Запомнить меня
+                </label>
+                <a href="#" class="link" style="display: flex; align-items: center;">Забыли пароль?</a>
+            </div>
+
+            <div slot="actions" class="action-block">
+                <md-filled-button id="login-button" type="submit">Войти</md-filled-button>
+                <md-filled-tonal-button id="register-button">Регистрация</md-filled-tonal-button>
+            </div>
+        </form>
+    </md-dialog>
+
+    <script>
+        const icon = document.getElementById('theme-icon');
+
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            const isDark = document.body.classList.toggle('dark');
+            icon.textContent = isDark ? 'dark_mode' : 'light_mode';
+        });
+    </script>
+    <script>
+        const loginForm = document.getElementById("login-form");
+        document
+            .getElementById("login-button")
+            .addEventListener("click", () => loginForm.show());
+    </script>
+    <script>
+        function validateForm(e) {
+            const login = document.getElementById('login');
+            const password = document.getElementById('password');
+            if (!login.value.trim() || !password.value.trim()) {
+                e.preventDefault();
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+
+</html>
