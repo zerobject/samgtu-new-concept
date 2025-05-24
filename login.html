@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru" theme="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Вход — СамГТУ</title>
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Unbounded:wght@200..900&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+    <link rel="stylesheet" href="styles/main.css">
+
+    <script type="importmap">
+    {
+		"imports": {
+			"@material/web/": "https://esm.run/@material/web/"
+		}
+    }
+    </script>
+    <script type="module">
+        import '@material/web/all.js';
+        import { styles as typescaleStyles } from '@material/web/typography/md-typescale-styles.js';
+
+        document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    </script>
+</head>
+
+<body>
+    <header>
+        <img id="page-logo" class="fade-in" src="images/logo_dark.png" alt="Логотип сайта" width="192">
+        <div class="top-actions">
+            <md-filled-button id="login-button" class="fade-in">Войти</md-filled-button>
+            <md-filled-tonal-icon-button id="dm-toggle" class="fade-in">
+                <md-icon id="dm-toggle-icon" />
+            </md-filled-tonal-icon-button>
+        </div>
+    </header>
+
+    <h1 class="fade-in">Личный кабинет</h1>
+    <a class="fade-in">Вы не вошли в систему. Авторизуйтесь, чтобы получить доступ ко всем функциям сервиса личного кабинета.</a>
+
+    <md-dialog id="login-dialog">
+        <div slot="headline">Вход в систему</div>
+        <form slot="content" onsubmit="return validateForm(event)">
+            <md-outlined-text-field id="login" label="Логин" error></md-outlined-text-field>
+            <md-outlined-text-field id="password" label="Пароль" type="password" error></md-outlined-text-field>
+            <div class="optional-actions">
+                <label id="switch-label">
+                    <md-switch></md-switch>
+                    Запомнить меня
+                </label>
+            </div>
+            <div slot="actions" class="form-actions">
+                <md-filled-button type="submit">Войти</md-filled-button>
+                <md-filled-tonal-button>Регистрация</md-filled-tonal-button>
+            </div>
+        </form>
+    </md-dialog>
+
+    <script src="index.js"></script>
+</body>
+
+</html>

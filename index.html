@@ -1,17 +1,21 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" theme="dark">
 
 <head>
-    <meta charset="UTF-8" />
-    <title>Вход — СамГТУ</title>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Roboto:wght@100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+	<meta charset="UTF-8" />
+	<title>СамГТУ ЛК</title>
+
+	<link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Unbounded:wght@200..900&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/schedule.css">
+
     <script type="importmap">
     {
-        "imports": {
-            "@material/web/": "https://esm.run/@material/web/"
-        }
+		"imports": {
+			"@material/web/": "https://esm.run/@material/web/"
+		}
     }
     </script>
     <script type="module">
@@ -20,68 +24,53 @@
 
         document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
     </script>
-    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <header>
-        <md-filled-button id="login-button">Войти</md-filled-button>
-        <md-outlined-icon-button id="theme-toggle">
-            <md-icon id="theme-icon">dark_mode</md-icon>
-        </md-outlined-icon-button>
-    </header>
+	<script>
+		const isLoggedIn = localStorage.getItem("auth") === "true";
+		if (!isLoggedIn) {
+			const redirectUrl = encodeURIComponent(location.href);
+			location.href = `login.html?redirect=${redirectUrl}`;
+		}
+	</script>
 
-    <md-dialog id="login-form">
-        <div slot="headline" style="justify-content: space-between;">
-            <label>Вход в систему</label>
-            <md-icon-button id="settings-button">
-                <md-icon>settings</md-icon>
-            </md-icon-button>
-        </div>
-        <form slot="content" onsubmit="return validateForm(event)">
-            <md-outlined-text-field label="Логин" id="login"></md-outlined-text-field>
-            <md-outlined-text-field label="Пароль" id="password" type="password"></md-outlined-text-field>
+	<header>
+		<img id="page-logo" class="fade-in" src="images/logo_dark.png" alt="Логотип сайта" width="192">
+		<div class="top-actions">
+			<md-filled-button class="fade-in" onclick="logout()">Выйти</md-filled-button>
+			<md-filled-tonal-icon-button id="dm-toggle" class="fade-in">
+				<md-icon id="dm-toggle-icon" />
+			</md-filled-tonal-icon-button>
+			<md-filled-icon-button class="fade-in">
+				<md-icon>account_circle</md-icon>
+			</md-filled-icon-button>
+		</div>
+	</header>
 
-            <div style="display: flex; flex-direction: row; justify-content: space-between;">
-                <label style="display: flex; align-items: center; gap: 8px;">
-                    <md-switch></md-switch>
-                    Запомнить меня
-                </label>
-                <a href="#" class="link" style="display: flex; align-items: center;">Забыли пароль?</a>
-            </div>
+	<h1 class="fade-in">Расписание</h1>
+	<div class="schedule-grid">
+		<div class="day-card fade-in">
+			<div class="day-header">Пн, 13 мая</div>
+			<ul class="lesson-list">
+				<li class="lesson blue">09:45 — Физика</li>
+				<li class="lesson orange">11:50 — Введение в базы данных</li>
+				<li class="lesson blue">13:35 — Математический анализ</li>
+			</ul>
+		</div>
 
-            <div slot="actions" class="action-block">
-                <md-filled-button id="login-button" type="submit">Войти</md-filled-button>
-                <md-filled-tonal-button id="register-button">Регистрация</md-filled-tonal-button>
-            </div>
-        </form>
-    </md-dialog>
+		<div class="day-card fade-in">
+			<div class="day-header">Вт, 14 мая</div>
+			<ul class="lesson-list">
+				<li class="lesson orange">08:00 — Дискретная математика</li>
+				<li class="lesson blue">09:45 — Алгебра и геометрия</li>
+			</ul>
+		</div>
 
-    <script>
-        const icon = document.getElementById('theme-icon');
+		<!-- и т.д. -->
+	</div>
 
-        document.getElementById('theme-toggle').addEventListener('click', () => {
-            const isDark = document.body.classList.toggle('dark');
-            icon.textContent = isDark ? 'dark_mode' : 'light_mode';
-        });
-    </script>
-    <script>
-        const loginForm = document.getElementById("login-form");
-        document
-            .getElementById("login-button")
-            .addEventListener("click", () => loginForm.show());
-    </script>
-    <script>
-        function validateForm(e) {
-            const login = document.getElementById('login');
-            const password = document.getElementById('password');
-            if (!login.value.trim() || !password.value.trim()) {
-                e.preventDefault();
-                return false;
-            }
-            return true;
-        }
-    </script>
+	<script src="index.js"></script>
 </body>
 
 </html>

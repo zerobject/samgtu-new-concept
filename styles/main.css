@@ -1,0 +1,128 @@
+:root {
+    --md-sys-color-primary: #004182;
+    --md-sys-color-on-primary: #d9d9d9;
+    --md-sys-color-primary-container: #d1e3ff;
+    --md-sys-color-on-primary-container: #001d3c;
+
+    --md-sys-color-secondary: #44c8f5;
+    --md-sys-color-on-secondary: #d9d9d9;
+    --md-sys-color-secondary-container: #c5e7ff;
+    --md-sys-color-on-secondary-container: #001f2a;
+
+    --md-sys-color-tertiary: #ed1847;
+    --md-sys-color-on-tertiary: #d9d9d9;
+    --md-sys-color-tertiary-container: #ffdada;
+    --md-sys-color-on-tertiary-container: #3f0010;
+
+    --md-sys-color-background: #d9d9d9;
+    --md-sys-color-on-background: #262626;
+
+    --md-sys-color-surface: #d9d9d9;
+    --md-sys-color-on-surface: #262626;
+
+    --md-sys-color-outline: #999;
+
+    --md-ref-typeface-brand: 'Unbounded';
+    --md-ref-typeface-plain: 'Inter';
+}
+
+body {
+    padding: 12px;
+    background-color: var(--md-sys-color-background);
+    color: var(--md-sys-color-on-background);
+    transition: all 0.15s ease-in-out;
+}
+
+[theme='dark'] {
+    --md-sys-color-primary: #8fbfff;
+    --md-sys-color-on-primary: #001d3c;
+    --md-sys-color-primary-container: #004182;
+    --md-sys-color-on-primary-container: #d1e3ff;
+
+    --md-sys-color-secondary: #77e0ff;
+    --md-sys-color-on-secondary: #003544;
+    --md-sys-color-secondary-container: #005b6c;
+    --md-sys-color-on-secondary-container: #c5e7ff;
+
+    --md-sys-color-tertiary: #ffb3c2;
+    --md-sys-color-on-tertiary: #4c0015;
+    --md-sys-color-tertiary-container: #800026;
+    --md-sys-color-on-tertiary-container: #ffdada;
+
+    --md-sys-color-background: #121212;
+    --md-sys-color-on-background: #e6e6e6;
+
+    --md-sys-color-surface: #1e1e1e;
+    --md-sys-color-on-surface: #e6e6e6;
+
+    --md-sys-color-outline: #777;
+
+    --md-ref-typeface-brand: 'Unbounded';
+    --md-ref-typeface-plain: 'Inter';
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    padding: 1rem 2rem;
+    background-color: var(--md-sys-color-surface);
+    color: var(--md-sys-color-on-surface);
+    border-radius: 24px;
+    box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.07),
+        0 2px 4px rgba(0, 0, 0, 0.07),
+        0 4px 8px rgba(0, 0, 0, 0.07);
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px var(--md-sys-color-on-background);
+}
+
+#page-logo {
+    width: 200px;
+    object-fit: contain;
+}
+
+.top-actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+}
+
+h1 {
+    font-family: 'Unbounded';
+}
+
+md-dialog#login-dialog {
+    --md-dialog-container-color: var(--md-sys-color-surface);
+    width: 40%;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#switch-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.form-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: scale 0.5s ease translate 0.5s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0px);
+}
