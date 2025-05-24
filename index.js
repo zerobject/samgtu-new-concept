@@ -68,6 +68,10 @@ function logout() {
     location.reload();
 }
 
+function drawElementsByData() {
+
+}
+
 // подписки
 document.addEventListener('DOMContentLoaded', () => {
     setTheme(theme);
@@ -77,6 +81,16 @@ document.addEventListener('DOMContentLoaded', () => {
     document
         .querySelectorAll('.fade-in')
         .forEach((el, i) => setTimeout(() => el.classList.add('visible'), i * 75));
+
+    fetch("https://samgtu-new-concept-service.onrender.com/lessons")
+        .then((res) => res.json())
+        .then((data) => {
+            console.log("Данные с сервера:", data);
+            // сюда вставляй логику отрисовки карточек, таблиц и т.п.
+        })
+        .catch((err) => {
+            console.error("Ошибка при загрузке данных:", err);
+        });
 });
 
 dmToggle?.addEventListener('click', toggleTheme);
